@@ -3,10 +3,10 @@ import { getRedeemRequest } from '@/lib/blockchain/contract';
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { requestId: string } }
+    { params }: { params: Promise<{ requestId: string }> }
 ) {
     try {
-        const requestId = params.requestId;
+        const { requestId } = await params;
 
         if (!requestId) {
             return NextResponse.json(

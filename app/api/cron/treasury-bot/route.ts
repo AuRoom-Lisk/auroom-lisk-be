@@ -36,6 +36,10 @@ export async function GET(req: NextRequest) {
                     bankHash
                 );
 
+                if (!burnReceipt) {
+                    throw new Error('Failed to burn IDRX - wallet client not initialized');
+                }
+
                 console.log(`[Treasury Bot] Burned IDRX, tx: ${burnReceipt.transactionHash}`);
 
                 // 2. Submit to IDRX API

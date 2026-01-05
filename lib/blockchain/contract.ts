@@ -46,6 +46,8 @@ export async function updateRedeemStatus(
         abi: BORROWING_PROTOCOL_ABI,
         functionName: 'updateRedeemStatus',
         args: [requestId, status, txHashBurn, txHashRedeem],
+        chain: liskSepolia,
+        account: walletClient.account!,
     });
 
     // Wait for confirmation
@@ -129,6 +131,8 @@ export async function burnIDRXFromTreasury(
         ]),
         functionName: 'burnWithAccountNumber',
         args: [amount, bankAccountHash],
+        chain: liskSepolia,
+        account: walletClient.account!,
     });
 
     const receipt = await publicClient.waitForTransactionReceipt({ hash });
